@@ -15,22 +15,16 @@ import { User } from "app/user";
 export class ProfileComponent implements OnInit {
 
   @Input() userId: number;
-  user: Observable<User>;
+  user: User;
   myPosts: AlaRequest[];
 
   constructor(private service: MainService, private userService: UserService) {
-    // this.myPosts.push({
-    //   userId: 123,
-    //   requestId: 123,
-    //   requestBody: {
-    //      text: "Cool offer!",
-    //      tags: ["myTag"]
-    //    }});
   }
 
   ngOnInit() {
     this.userService.getUserById(this.userId)
     .then((user)=>{
+      this.user = user;
       return this.service.getPostsByUser(user.username)
     })
     .then((posts)=>{
