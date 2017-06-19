@@ -9,7 +9,7 @@ import { appRoutes } from "app/app.routes";
 import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
 
-import { MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
+import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 
@@ -23,6 +23,8 @@ import { HttpModule } from "@angular/http";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MdToolbarModule,
+    MdButtonModule,
     MdCardModule,
     MdListModule,
     HttpModule,

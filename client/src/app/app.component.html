@@ -1,5 +1,20 @@
-<nav>
-  <a routerLink="/profile" routerLinkActive="active">פרופיל</a>
-  <a routerLink="/feed" routerLinkActive="active">פוסטים</a>
-</nav>
+<md-toolbar class="ala-nav-toolbar" color="primary">
+ 
+  <nav id="ala-nav">
+    <md-card id="ala-nav-profile" routerLink="/profile" routerLinkActive="active">
+      <md-card-header>
+        <div md-card-avatar class="ala-nav-profile-image"></div>
+        <md-card-title>אלדין</md-card-title>
+      </md-card-header>
+    </md-card>
+    <button class="ala-nav-button" md-button routerLink="/feed" routerLinkActive="active">צפה בבקשות</button>
+  </nav>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+
+  <span class="ala-app-name">Aladin</span>
+
+</md-toolbar>
+
 <router-outlet></router-outlet>
