@@ -83,6 +83,26 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Search requests by tags",
+			"request": {
+				"url": "http://localhost:3000/request/_search/tags",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[ \"tag66\", \"tag2\"]"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

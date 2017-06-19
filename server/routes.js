@@ -6,6 +6,7 @@ function routes(server) {
     server.post('/request', createRequest);
     server.get('/request/:requestId', getRequest);
     server.post('/request/_search', searchRequests);
+    server.post('/request/_search/tags', searchRequestsByTags);
 
     server.post('/request/:requestId/complete', completeRequest);
 
@@ -32,6 +33,13 @@ async function searchRequests(req, res, next) {
     const query = req.body.query;
 
     const response = await services.searchRequests(query);
+
+    res.json(200, response);
+}
+async function searchRequestsByTags(req, res, next) {
+    const tags = req.body;
+
+    const response = await services.searchRequestsByTags(tags);
 
     res.json(200, response);
 }
