@@ -4,12 +4,14 @@ const services = require('./services.js');
 function routes(server) {
 
     server.post('/request', createRequest);
+    server.get('/request', getRequests)
     server.get('/request/:requestId', getRequest);
     server.post('/request/_search', searchRequests);
     server.post('/request/_search/tags', searchRequestsByTags);
     server.get('/request/user/:userId', getRequestsByUserId);
 
     server.post('/request/:requestId/complete', completeRequest);
+    server.post('/request/:requestId/rate', rateRequest);
 
     server.get('postman-collection', getPostmanCollection);
 }
@@ -18,6 +20,12 @@ async function createRequest(req, res, next) {
     const body = req.body;
 
     const response = await services.createRequest(body);
+
+    res.json(200, response);
+}
+
+async function getRequests(req, res, next) {
+    const response = await services.getRequests();
 
     res.json(200, response);
 }
@@ -60,6 +68,10 @@ async function completeRequest(req, res, next) {
     const response = await services.completeRequest(requestId, userId);
 
     res.status(204);
+}
+
+async function rateRequest(req, res, next) {
+
 }
 
 function getPostmanCollection(req, res, next) {

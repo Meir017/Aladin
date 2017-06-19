@@ -1,5 +1,6 @@
 module.exports = {
     getRequest,
+    getRequests,
     createRequest,
     searchRequests,
     searchRequestsByTags,
@@ -20,6 +21,12 @@ async function getRequest(requestId) {
     const result = await AladinRequest.findOne({ _id: requestId });
 
     return extractRequestFromResult(result);
+}
+
+async function getRequests() {
+    const results = await AladinRequest.find({});
+
+    return results.map(extractRequestFromResult);
 }
 
 async function createRequest(request) {
