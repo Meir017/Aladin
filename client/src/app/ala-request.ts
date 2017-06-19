@@ -6,9 +6,8 @@ export class AlaRequest {
     userId: number;
     requestId: number
     requestBody: AlaRequestDetails;
-    suggestions: AlaRequestDetails[];
-    replies: AlaReply
+    suggestions?: AlaRequestDetails[];
+    replies?: AlaReply
 
     constructor(){}
-
 }

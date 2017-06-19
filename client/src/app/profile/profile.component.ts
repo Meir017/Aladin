@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
 import { AlaRequestDetails } from "app/ala-request-details";
+import { AlaMyRequest } from "app/ala-my-request";
 
 @Component({
   selector: 'ala-profile',
@@ -12,18 +13,18 @@ export class ProfileComponent implements OnInit {
 
   name: string = "";
   username: string = "";
-  myPosts: {requestId: number, requestBody: AlaRequestDetails}[] = [];
+  myPosts: AlaRequest[] = [];
 
   constructor(private service: MainService) {
     this.name = "שגיא"; 
     this.username = "sagy";
     this.myPosts.push({
-      requestId: 1,
-       requestBody:{
+      userId: 123,
+      requestId: 123,
+      requestBody: {
          text: "Cool offer!",
          tags: ["myTag"]
-       }
-      })
+       }});
   }
 
   ngOnInit() {

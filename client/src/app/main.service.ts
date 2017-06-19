@@ -3,6 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { AlaRequest } from "app/ala-request";
 import {Http} from '@angular/http';
 import './rxjs-operators';
+import { AlaMyRequest } from "app/ala-my-request";
 
 @Injectable()
 export class MainService {
@@ -12,26 +13,26 @@ export class MainService {
   constructor(private http: Http) { }
 
   getMyPosts(username: string): Observable<AlaRequest[]>{
-      let requestBody = {
+      let searchQuery = {
         query:{
           userId: username
         }
       };
 
-      return this.http.get(this.requestUrl, requestBody)
+      return this.http.get(this.requestUrl, searchQuery)
                   .catch(this.handleError)
                   .map(this.extractData);
   }
 
   getPosts(): Observable<AlaRequest[]>{
-      let requestBody = {
+      let searchQuery = {
         query: { },
         "$orderby": {
           date: -1
         }
       };
 
-      return this.http.get(this.requestUrl, requestBody)
+      return this.http.get(this.requestUrl, searchQuery)
                   .catch(this.handleError)
                   .map(this.extractData);
   }
