@@ -1,87 +1,44 @@
 module.exports = {
     getRequest,
     createRequest,
-    searchRequests
+    searchRequests,
+    completeRequest
 };
 
-function getRequest(requestId) {
-    return {
-        userId: "aladin1",
-        requestId: requestId,
-        requestBody: {
-            text: "can you help me?",
-            tags: ["tag1", "tag2"]
-        },
-        suggestions: [{
-            text: "aladeen",
-            tags: ["tag3", "tag4"]
-        }],
-        replies: [{
-                text: "I can cook for you",
-                userId: "aladin2",
-                date: new Date()
-            },
-            {
-                text: "I can bake for you",
-                userId: "aladin3",
-                date: new Date()
-            }
-        ]
-    }
+const { AladinRequest } = require('./dal');
+
+async function getRequest(requestId) {
+    const result = await AladinRequest.findOne({ _id: requestId });
+
+    return extractRequestFromResult(result);
 }
 
-function createRequest(request) {
-    return {
-        requestId: "aladinId"
-    };
+async function createRequest(request) {
+    request.completed = false;
+
+    const result = await AladinRequest.insertMany([request]);
+
+    return { requestId: result[0]._id };
 }
 
-function searchRequests(query) {
-    return [{
-            userId: "aladin1",
-            requestId: "requestId1",
-            requestBody: {
-                text: "can you help me?",
-                tags: ["tag1", "tag2"]
-            },
-            suggestions: [{
-                text: "aladeen",
-                tags: ["tag3", "tag4"]
-            }],
-            replies: [{
-                    text: "I can cook for you",
-                    userId: "aladin2",
-                    date: new Date()
-                },
-                {
-                    text: "I can bake for you",
-                    userId: "aladin3",
-                    date: new Date()
-                }
-            ]
-        },
-        {
-            userId: "aladin4",
-            requestId: "requestId2",
-            requestBody: {
-                text: "can you help me?",
-                tags: ["tag1", "tag2"]
-            },
-            suggestions: [{
-                text: "aladeen",
-                tags: ["tag3", "tag4"]
-            }],
-            replies: [{
-                    text: "I can cook for you",
-                    userId: "aladin5",
-                    date: new Date()
-                },
-                {
-                    text: "I can bake for you",
-                    userId: "aladin6",
-                    date: new Date()
-                }
-            ]
-        }
-    ]
+async function searchRequests(query) {
+    query.completed = false;
+
+    const results = await AladinRequest.find(query);
+
+    return results.map(extractRequestFromResult);
+}
+
+async function completeRequest(requestId, userId) {
+    const result = await AladinRequest.findByIdAndUpdate(requestId, { completed: true });
+
+    return extractRequestFromResult(result);
+}
+
+function extractRequestFromResult(result) {
+    result._doc.requestId = result._doc._id;
+    delete result._doc._id;
+    delete result._doc.__v;
+
+    return result._doc;
 }

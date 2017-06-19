@@ -25,7 +25,8 @@
     "dependencies": {
         "bcrypt": "^0.8.5",
         "mongoose": "^4.1.9",
-        "restify": "^4.0.3"
+        "restify": "^4.0.3",
+        "mongojs": "^2.4.0"
     },
     "engines": {
         "node": "8.1.2"
