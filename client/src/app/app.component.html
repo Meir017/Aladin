@@ -1,12 +1,17 @@
-<md-toolbar color="primary">
-  <span>Aladin</span>
+<md-toolbar class="ala-nav-toolbar" color="primary">
+  <span class="ala-app-name">Aladin</span>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <nav>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <a routerLink="/feed" routerLinkActive="active">Feed</a>
+  <nav id="ala-nav">
+    <button class="ala-nav-button" md-button routerLink="/feed" routerLinkActive="active">צפה בבקשות</button>
+    <md-card id="ala-nav-profile" routerLink="/profile" routerLinkActive="active">
+      <md-card-header>
+        <div md-card-avatar class="ala-nav-profile-image"></div>
+        <md-card-title>אלדין</md-card-title>
+      </md-card-header>
+    </md-card>
   </nav>
 </md-toolbar>
 

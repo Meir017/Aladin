@@ -1,5 +1,78 @@
-.fill-remaining-space {
-  // This fills the remaining space, by using flexbox. 
-  // Every toolbar row uses a flexbox row layout.
-  flex: 1 1 auto;
+$nav-background: #65e481;
+$button-background: #d5f79e;
+$button-hover: #81ec94;
+
+md-toolbar.ala-nav-toolbar {
+    padding: 0;
+    background: $nav-background;
+
+    span.ala-app-name {
+        margin-left: 0.8em;
+    }
+
+    span.fill-remaining-space {
+        // This fills the remaining space, by using flexbox. 
+        // Every toolbar row uses a flexbox row layout.
+        flex: 1 1 auto;
+    }
+
+    nav#ala-nav {
+        height: 100%;
+        line-height: 3em;
+
+        button.ala-nav-button {
+            margin-right: 0.8em;
+            background: $button-background;
+
+            font-size: 0.8em;
+            font-weight: bold;
+
+            transition: 0.3s background ease-in-out;
+
+            &:hover {
+                background: $button-hover;
+            }
+        }
+
+        md-card#ala-nav-profile {
+            direction: rtl;
+            display: inline-block;
+
+            border: none;
+            outline: none;
+            box-shadow: none;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 1em;
+            height: 96%;
+
+            cursor: pointer;
+            transition: 0.3s background ease-in-out;
+
+            &:hover {
+                background: $button-hover;
+            }
+
+            md-card-header {
+                height: 100%;
+
+                div.ala-nav-profile-image {
+                    background-image: url('../assets/aladin.png');
+                    background-size: cover;
+
+                    position: absolute;
+                    top: 0.4em;
+                }
+            }
+
+            md-card-title {
+                margin-right: 3.4em;
+                margin-bottom: 0;
+
+                font-size: 0.8em;
+                font-weight: bold;
+            }
+        }
+    }
+
 }
