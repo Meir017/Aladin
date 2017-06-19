@@ -7,17 +7,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { appRoutes } from "app/app.routes";
 import { FeedComponent } from './feed/feed.component';
+import { PostComponent } from './post/post.component';
+
+import { MdCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    FeedComponent
+    FeedComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)    
+    MdCardModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
