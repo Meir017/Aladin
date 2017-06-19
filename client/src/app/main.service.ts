@@ -5,16 +5,18 @@ import { Http, RequestOptions } from '@angular/http';
 import './rxjs-operators';
 import { AlaMyRequest } from "app/ala-my-request";
 import { CreateRequest } from "app/create-request";
+import { CreateRequestResponse } from "app/create-request-response";
 
 @Injectable()
 export class MainService {
 
-  private requestUrl: string = 'http://1.1.0.79:3000/request';
-  private requestUserUrl: string = 'http://1.1.0.79:3000/request/user';
+  private baseUrl: string = "http://1.1.0.79:3000";
+  private requestUrl: string = `${this.baseUrl}/request`;
+  private requestUserUrl: string = `${this.baseUrl}/request/user`;
 
   constructor(private http: Http) { }
 
-  getPostsByUser(username: string): Promise<AlaRequest[]>{
+  getRequestsByUser(username: string): Promise<AlaRequest[]>{
      let params = new URLSearchParams();
      params.set('userId', username);
       let options = new RequestOptions({
@@ -23,26 +25,29 @@ export class MainService {
 
       return this.http.get(`${this.requestUserUrl}/${username}`)
                   .catch(this.handleError)
-                  .map(this.extractData).toPromise();
+                  .map(this.extractSearchData).toPromise();
   }
 
-  getPosts(): Promise<AlaRequest[]>{
+  getRequests(): Promise<AlaRequest[]>{
       return this.http.get(this.requestUrl)
                   .catch(this.handleError)
-                  .map(this.extractData).toPromise();
+                  .map(this.extractSearchData).toPromise();
   }
 
-  // createPost(): void{
-  //   // let request: CreateRequest = {
+  createRequest(createRequest: CreateRequest): Promise<CreateRequestResponse>{
+    return this.http.post(this.requestUrl, createRequest)
+                  .catch(this.handleError)
+                  .map(this.extractCreateData).toPromise();
+  }
 
-  //   // };
+  private extractCreateData(res: Response): CreateRequestResponse {
+    let body: any = res.json();
+    let response: CreateRequestResponse = body;
+    
+    return response;
+  }
 
-  //   return this.http.post(this.requestUrl, request)
-  //                 .catch(this.handleError)
-  //                 .map(this.extractData).toPromise();
-  // }
-
-  private extractData(res: Response): AlaRequest[]{
+  private extractSearchData(res: Response): AlaRequest[]{
     let body: any = res.json();
     let requests: AlaRequest[] = body;
     

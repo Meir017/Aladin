@@ -1,8 +1,8 @@
 export class AlaReply {
 
     text: string;
-    userId: number;
-    date: Date;
+    userId: string;
+    created: Date
 
     constructor(){}
 }

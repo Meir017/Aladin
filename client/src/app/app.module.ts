@@ -12,7 +12,7 @@ import { PostComponent } from './post/post.component';
 import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
-import { UserService } from "app/user.service";
+import { ADUserService } from "app/ad-user.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { UserService } from "app/user.service";
   ],
   providers: [
     MainService,
-    UserService
+    ADUserService
   ],
   bootstrap: [AppComponent]
 })

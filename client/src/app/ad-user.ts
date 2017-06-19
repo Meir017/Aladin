@@ -1,5 +1,5 @@
-export class User {
-    userId: number;
+export class ADUser {
+    userId: string;
     username: string;
     displayName:string;
     location: string;
