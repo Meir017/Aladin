@@ -4,8 +4,8 @@ import { AlaRequest } from "app/ala-request";
 import { AlaRequestDetails } from "app/ala-request-details";
 import { AlaMyRequest } from "app/ala-my-request";
 import { Observable } from "rxjs/Observable";
-import { UserService } from "app/user.service";
-import { User } from "app/user";
+import { ADUserService } from "app/ad-user.service";
+import { ADUser } from "app/ad-user";
 
 @Component({
   selector: 'ala-profile',
@@ -15,17 +15,17 @@ import { User } from "app/user";
 export class ProfileComponent implements OnInit {
 
   @Input() userId: number;
-  user: User;
+  user: ADUser;
   myPosts: AlaRequest[];
 
-  constructor(private service: MainService, private userService: UserService) {
+  constructor(private service: MainService, private userService: ADUserService) {
   }
 
   ngOnInit() {
     this.userService.getUserById(this.userId)
     .then((user)=>{
       this.user = user;
-      return this.service.getPostsByUser(user.username)
+      return this.service.getRequestsByUser(user.username)
     })
     .then((posts)=>{
       this.myPosts = posts;

@@ -96,8 +96,21 @@ function extractRequestFromResult(result) {
         return null;
     }
     result._doc.requestId = result._doc._id;
+    result._doc.user = {
+        id: result._doc.userId,
+        rating: Math.floor(Math.random() * 100)
+    }
     delete result._doc._id;
     delete result._doc.__v;
+    delete result._doc.userId;
+    result._doc.replies.forEach(reply => {
+        reply._doc.user = {
+            id: reply.userId,
+            rating: Math.floor(Math.random() * 100)
+        };
+        delete reply._doc.userId;
+        delete reply._doc._id;
+    });
 
     return result._doc;
 }

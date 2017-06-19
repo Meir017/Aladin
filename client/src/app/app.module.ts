@@ -13,7 +13,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
-import { UserService } from "app/user.service";
+import { ADUserService } from "app/ad-user.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { UserService } from "app/user.service";
   ],
   providers: [
     MainService,
-    UserService
+    ADUserService
   ],
   bootstrap: [AppComponent]
 })

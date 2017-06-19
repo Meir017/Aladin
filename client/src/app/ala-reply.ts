@@ -1,8 +1,9 @@
+import { AlaUser } from "app/ala-user";
+
 export class AlaReply {
 
     text: string;
-    userId: number;
-    date: Date;
+    userId: AlaUser;
 
     constructor(){}
 }
