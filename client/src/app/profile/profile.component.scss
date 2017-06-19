@@ -1,0 +1,50 @@
+section#ala-profile-info {
+
+    md-card#ala-profile {
+        margin-top: 3em;
+        box-shadow: none;
+
+        md-card-header {
+
+            div.ala-profile-image {
+                background-image: url('../../assets/images/aladin.png');
+                background-size: cover;
+
+                &.mat-card-avatar {
+                    width: 20em;
+                    height: 20em;
+
+                    border: 2px solid #676767;
+                }
+            }
+
+            md-card-title {
+                margin-top: 2em;
+
+                font-size: 2em;
+                font-weight: bold;
+            }
+
+            md-card-subtitle {
+                font-size: 1.2em;
+                color: #9c9c9c;
+            }
+
+           div#ala-profile-data {
+                margin-right: 2rem;
+
+                ul#ala-profile-data-skills {
+                    width: 100%;
+                }
+            }
+        }
+
+        md-card-content {
+            div {
+                margin-top: 3em;
+            }
+        }
+
+    }
+
+}
