@@ -13,6 +13,8 @@ function routes(server) {
     server.post('/request/:requestId/complete', completeRequest);
     server.post('/request/:requestId/rate', rateRequest);
 
+    server.post('/request/:requestId/reply', addRequestReply);
+
     server.get('postman-collection', getPostmanCollection);
 }
 
@@ -72,6 +74,15 @@ async function completeRequest(req, res, next) {
 
 async function rateRequest(req, res, next) {
 
+}
+
+async function addRequestReply(req, res, next) {
+    const requestId = req.params.requestId;
+    const reply = req.body;
+
+    const response = await services.addRequestReply(requestId, reply);
+
+    res.json(200, response);
 }
 
 function getPostmanCollection(req, res, next) {
