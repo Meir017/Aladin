@@ -6,8 +6,15 @@ module.exports = {
 };
 
 const { AladinRequest } = require('./dal');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+
 
 async function getRequest(requestId) {
+    if (!ObjectId.isValid(requestId)) {
+        return null;
+    }
+
     const result = await AladinRequest.findOne({ _id: requestId });
 
     return extractRequestFromResult(result);
@@ -36,6 +43,9 @@ async function completeRequest(requestId, userId) {
 }
 
 function extractRequestFromResult(result) {
+    if (!result) {
+        return null;
+    }
     result._doc.requestId = result._doc._id;
     delete result._doc._id;
     delete result._doc.__v;
