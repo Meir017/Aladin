@@ -2,12 +2,12 @@
     "name": "restify-api-layout",
     "version": "1.0.0",
     "description": "An API for mobile application",
-    "main": "server.js",
+    "main": "index.js",
     "directories": {
         "test": "test"
     },
     "scripts": {
-        "start": "node server.js"
+        "start": "node index.js"
     },
     "repository": {
         "type": "git",
@@ -27,5 +27,8 @@
         "bcrypt": "^0.8.5",
         "mongoose": "^4.1.9",
         "restify": "^4.0.3"
+    },
+    "engines": {
+        "node": "8.1.2"
     }
 }
