@@ -6,6 +6,6 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
-server.listen(process.env.PORT || 3000, function () {
+server.listen(process.env.PORT || 3000, () => {
   console.log(`${server.name} listening at ${server.url}`);
 });
