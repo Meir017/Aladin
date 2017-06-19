@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 16,\r\n    \"requestBody\": {\r\n        \"text\": \"can you help me?\",\r\n        \"tags\": [\"tag1\", \"tag2\"]\r\n    },\r\n    \"suggestions\": [{\r\n        \"text\": \"aladeen\",\r\n        \"tags\": [\"tag3\", \"tag4\"]\r\n    }]\r\n}"
+					"raw": "{\r\n    \"userId\": \"meir\",\r\n    \"requestBody\": {\r\n        \"text\": \"can you help me? 3\",\r\n        \"tags\": [\"tag1\", \"tag2\"]\r\n    },\r\n    \"suggestions\": [{\r\n        \"text\": \"aladeen 7\",\r\n        \"tags\": [\"tag3\", \"tag4\"]\r\n    }]\r\n}"
 				},
 				"description": ""
 			},
@@ -29,8 +29,43 @@
 		},
 		{
 			"name": "Get Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"same requestId\"] = jsonData.requestId === '5948014a15b5ba6f988f3a46';",
+							"tests[\"no _id property\"] = jsonData.hasOwnProperty('_id') === false;",
+							"tests[\"no __v property\"] = jsonData.hasOwnProperty('__v') === false;",
+							"tests[\"array replies property\"] = jsonData.replies && (typeof jsonData.replies.length === 'number');",
+							"tests[\"array suggestions property\"] = jsonData.suggestions && (typeof jsonData.suggestions.length === 'number');",
+							"tests[\"requestBody property\"] = jsonData.requestBody.text && jsonData.requestBody.tags && jsonData.requestBody.tags.length;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "http://localhost:3000/request/6",
+				"url": {
+					"raw": "http://localhost:3000/request/:requestId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"request",
+						":requestId"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "requestId",
+							"value": "5948014a15b5ba6f988f3a46"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -58,7 +93,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"query\":{\n\t\t\"userId\": 'my-user-id'\n\t}\n}"
+					"raw": "{\n\t\"query\":{\n\t\t\n\t}\n}"
 				},
 				"description": ""
 			},
@@ -67,7 +102,26 @@
 		{
 			"name": "Complete request",
 			"request": {
-				"url": "http://localhost:3000/request/5948014a15b5ba6f988f3a46/complete",
+				"url": {
+					"raw": "http://localhost:3000/request/:requestId/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"request",
+						":requestId",
+						"complete"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "requestId",
+							"value": "5948014a15b5ba6f988f3a46"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -100,6 +154,36 @@
 					"mode": "raw",
 					"raw": "[ \"tag66\", \"tag2\"]"
 				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get requests by userId",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/request/user/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"request",
+						"user",
+						":userId"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "meir"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
 				"description": ""
 			},
 			"response": []

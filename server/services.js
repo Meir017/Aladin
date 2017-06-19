@@ -3,6 +3,7 @@ module.exports = {
     createRequest,
     searchRequests,
     searchRequestsByTags,
+    getRequestsByUserId,
     completeRequest
 };
 
@@ -30,8 +31,6 @@ async function createRequest(request) {
 }
 
 async function searchRequests(query) {
-    query.completed = false;
-
     const results = await AladinRequest.find(query);
 
     return results.map(extractRequestFromResult);
@@ -43,8 +42,13 @@ function searchRequestsByTags(tags) {
             $elemMatch: {
                 $in: tags
             }
-        }
+        },
+        completed: false
     });
+}
+
+function getRequestsByUserId(userId) {
+    return searchRequests({ userId });
 }
 
 async function completeRequest(requestId, userId) {
