@@ -1,21 +1,28 @@
 <section id="ala-profile-info"> 
 
-  <div id="ala-profile">
-    <md-card>
-      <div>
-        <img src="../../assets/aladin.jpg" id="ala-profile-image"/>
-      </div>
-      <div>
-      <span id="ala-profile-name">{{name}}</span>
-      </div>
-      <div>
-        <md-list id="ala-my-posts" >
-          <md-list-item *ngFor="let post of myPosts"> 
-            <ala-post [request]="post"></ala-post>
-          </md-list-item>
-        </md-list>
-      </div>
+    <md-card id="ala-profile">
+      <md-card-header>
+        <div md-card-avatar class="ala-profile-image"></div>
+        <div id="ala-profile-data">
+          <md-card-title id="ala-profile-name">{{name}}</md-card-title>
+          <md-card-subtitle>בסיס</md-card-subtitle>
+          <span>כישורים:</span>
+          <ul id="ala-profile-data-skills">
+            <li>ללמד פייתון</li>
+            <li>ללמד נגינה</li>
+            <li>לנגן במשרה</li>
+          </ul>
+        </div>
+      </md-card-header>
+      <md-card-content>
+        <div>
+          <md-list id="ala-my-posts" >
+            <md-list-item *ngFor="let post of myPosts"> 
+              <ala-post [request]="post"></ala-post>
+            </md-list-item>
+          </md-list>
+        </div>
+      </md-card-content>
     </md-card>
-  </div>
 
 </section>
