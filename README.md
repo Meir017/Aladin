@@ -27,3 +27,22 @@
 
 # feed page
 ![feed](https://github.com/Meir017/Aladin/blob/master/docs/AladinPage.PNG)
+
+# API
+
+### Create Request:
+
+POST /requst
+````js
+{
+    userId: "string",
+    requestBody: {
+        text: "string",
+        tags: ["string"]
+    },
+    suggestions: [{
+        text: "string",
+        tags: ["string"]
+    }]
+}
+````
