@@ -7,8 +7,7 @@
         "test": "test"
     },
     "scripts": {
-        "start": "node server.js",
-        "build": "./node_modules/.bin/tsc.cmd"
+        "start": "node server.js"
     },
     "repository": {
         "type": "git",
@@ -20,8 +19,6 @@
     "author": "David Inga <davidsingal@icloud.com>",
     "license": "MIT",
     "devDependencies": {
-        "typescript": "2.3.4",
-
         "@types/bcrypt": "1.0.0",
         "@types/mongoose": "4.7.17",
         "@types/restify": "4.3.4"

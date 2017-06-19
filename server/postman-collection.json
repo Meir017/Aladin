@@ -1,0 +1,48 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Aladin",
+		"_postman_id": "e40f35b1-3e54-7251-90ab-5dde95c56f18",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Request",
+			"request": {
+				"url": "http://localhost:3000/request",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 16,\r\n    \"requestBody\": {\r\n        \"text\": \"can you help me?\",\r\n        \"tags\": [\"tag1\", \"tag2\"]\r\n    },\r\n    \"suggestions\": [{\r\n        \"text\": \"aladeen\",\r\n        \"tags\": [\"tag3\", \"tag4\"]\r\n    }]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Request",
+			"request": {
+				"url": "http://localhost:3000/request/6",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
