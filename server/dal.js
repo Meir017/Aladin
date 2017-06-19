@@ -18,8 +18,10 @@ const aladinRequests = new Schema({
     replies: [{
         text: String,
         userId: String,
-        date: Date
-    }]
+        created: Date
+    }],
+    created: Date,
+    updated: Date
 });
 
 const AladinRequest = mongoose.model('aladin_requests', aladinRequests);

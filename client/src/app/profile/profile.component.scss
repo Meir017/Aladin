@@ -42,6 +42,20 @@ section#ala-profile-info {
         md-card-content {
             div {
                 margin-top: 3em;
+                
+
+                md-list#ala-my-posts {
+
+                    md-list-item {
+                        margin: 3.8em 0;
+
+                        ala-post {
+                            width: 50%;
+                        }
+                    }
+
+                }
+
             }
         }
 
