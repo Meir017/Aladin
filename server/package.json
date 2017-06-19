@@ -2,12 +2,12 @@
     "name": "restify-api-layout",
     "version": "1.0.0",
     "description": "An API for mobile application",
-    "main": "index.js",
+    "main": "app.js",
     "directories": {
         "test": "test"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
@@ -16,7 +16,6 @@
     "keywords": [
         "api"
     ],
-    "author": "David Inga <davidsingal@icloud.com>",
     "license": "MIT",
     "devDependencies": {
         "@types/bcrypt": "1.0.0",
