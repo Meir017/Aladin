@@ -198,6 +198,45 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Add request reply",
+			"request": {
+				"url": {
+					"raw": "http://localhost:3000/request/:requestId/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"request",
+						":requestId",
+						"reply"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "requestId",
+							"value": "5947ff9cb1da876fdc83823b"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"api-reply\",\n\t\"userId\": \"yasha\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

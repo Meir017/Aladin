@@ -5,7 +5,9 @@ module.exports = {
     searchRequests,
     searchRequestsByTags,
     getRequestsByUserId,
-    completeRequest
+    completeRequest,
+    rateRequest,
+    addRequestReply
 };
 
 const { AladinRequest } = require('./dal');
@@ -31,6 +33,7 @@ async function getRequests() {
 
 async function createRequest(request) {
     request.completed = false;
+    request.created = request.updated = new Date();
 
     const result = await AladinRequest.insertMany([request]);
 
@@ -61,8 +64,28 @@ function getRequestsByUserId(userId) {
 async function completeRequest(requestId, userId) {
     const update = {
         completedByUser: userId,
-        completed: true
+        completed: true,
+        updated: new Date()
     };
+    const result = await AladinRequest.findByIdAndUpdate(requestId, update);
+
+    return extractRequestFromResult(result);
+}
+
+async function rateRequest() {}
+async function addRequestReply(requestId, reply) {
+    if (!ObjectId.isValid(requestId)) {
+        return null;
+    }
+
+    reply.created = new Date();
+
+    const update = {
+        $push: {
+            replies: reply
+        }
+    };
+
     const result = await AladinRequest.findByIdAndUpdate(requestId, update);
 
     return extractRequestFromResult(result);
