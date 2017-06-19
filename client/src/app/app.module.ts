@@ -12,6 +12,7 @@ import { PostComponent } from './post/post.component';
 import { MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
+import { UserService } from "app/user.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { HttpModule } from "@angular/http";
     MdGridListModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [MainService],
+  providers: [
+    MainService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

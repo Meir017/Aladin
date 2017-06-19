@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
 import { AlaRequestDetails } from "app/ala-request-details";
 import { AlaMyRequest } from "app/ala-my-request";
+import { Observable } from "rxjs/Observable";
+import { UserService } from "app/user.service";
+import { User } from "app/user";
 
 @Component({
   selector: 'ala-profile',
@@ -11,25 +14,28 @@ import { AlaMyRequest } from "app/ala-my-request";
 })
 export class ProfileComponent implements OnInit {
 
-  name: string = "";
-  username: string = "";
-  myPosts: AlaRequest[] = [];
+  @Input() userId: number;
+  user: Observable<User>;
+  myPosts: AlaRequest[];
 
-  constructor(private service: MainService) {
-    this.name = "שגיא"; 
-    this.username = "sagy";
-    this.myPosts.push({
-      userId: 123,
-      requestId: 123,
-      requestBody: {
-         text: "Cool offer!",
-         tags: ["myTag"]
-       }});
+  constructor(private service: MainService, private userService: UserService) {
+    // this.myPosts.push({
+    //   userId: 123,
+    //   requestId: 123,
+    //   requestBody: {
+    //      text: "Cool offer!",
+    //      tags: ["myTag"]
+    //    }});
   }
 
   ngOnInit() {
-    // this.service.getMyPosts(this.username)
-    //   .subscribe(posts => this.myPosts = posts);
+    this.userService.getUserById(this.userId)
+    .then((user)=>{
+      return this.service.getPostsByUser(user.username)
+    })
+    .then((posts)=>{
+      this.myPosts = posts;
+    });
   }
 
 }

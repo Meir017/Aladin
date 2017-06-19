@@ -6,10 +6,10 @@
         <img src="../../assets/aladin.jpg" id="ala-profile-image"/>
       </div>
       <div>
-      <span id="ala-profile-name">{{name}}</span>
+      <span id="ala-profile-name">meir</span>
       </div>
       <div>
-        <md-list id="ala-my-posts" >
+        <md-list id="ala-my-posts" *ngIf="myPosts">
           <md-list-item *ngFor="let post of myPosts"> 
             <ala-post [request]="post"></ala-post>
           </md-list-item>
