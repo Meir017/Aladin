@@ -6,8 +6,22 @@ md-toolbar.ala-nav-toolbar {
     padding: 0;
     background: $nav-background;
 
-    span.ala-app-name {
+    div#ala-app-logo {
         margin-left: 0.8em;
+        
+        span.ala-app-name {
+            position: absolute;
+            top: 0.9em;
+            left: 3.6em;
+        }
+    
+        img {
+            position: absolute;
+            top: 0.4em;
+            left: 1em;
+            width: 2em;
+            border-radius: 4px;
+        }
     }
 
     span.fill-remaining-space {
