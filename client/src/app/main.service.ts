@@ -4,12 +4,13 @@ import { AlaRequest } from "app/ala-request";
 import { Http, RequestOptions } from '@angular/http';
 import './rxjs-operators';
 import { AlaMyRequest } from "app/ala-my-request";
+import { CreateRequest } from "app/create-request";
 
 @Injectable()
 export class MainService {
 
-  private requestSearchUrl: string = 'http://1.1.0.79:3000/request';
-  private requestUserhUrl: string = 'http://1.1.0.79:3000/request/user';
+  private requestUrl: string = 'http://1.1.0.79:3000/request';
+  private requestUserUrl: string = 'http://1.1.0.79:3000/request/user';
 
   constructor(private http: Http) { }
 
@@ -20,16 +21,26 @@ export class MainService {
         params
       });
 
-      return this.http.get(`${this.requestUserhUrl}/${username}`)
+      return this.http.get(`${this.requestUserUrl}/${username}`)
                   .catch(this.handleError)
                   .map(this.extractData).toPromise();
   }
 
   getPosts(): Promise<AlaRequest[]>{
-      return this.http.get(this.requestSearchUrl)
+      return this.http.get(this.requestUrl)
                   .catch(this.handleError)
                   .map(this.extractData).toPromise();
   }
+
+  // createPost(): void{
+  //   // let request: CreateRequest = {
+
+  //   // };
+
+  //   return this.http.post(this.requestUrl, request)
+  //                 .catch(this.handleError)
+  //                 .map(this.extractData).toPromise();
+  // }
 
   private extractData(res: Response): AlaRequest[]{
     let body: any = res.json();
