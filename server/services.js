@@ -2,12 +2,21 @@ module.exports = {
     getRequest,
     createRequest,
     searchRequests,
+    searchRequestsByTags,
+    getRequestsByUserId,
     completeRequest
 };
 
 const { AladinRequest } = require('./dal');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+
 
 async function getRequest(requestId) {
+    if (!ObjectId.isValid(requestId)) {
+        return null;
+    }
+
     const result = await AladinRequest.findOne({ _id: requestId });
 
     return extractRequestFromResult(result);
@@ -22,20 +31,40 @@ async function createRequest(request) {
 }
 
 async function searchRequests(query) {
-    query.completed = false;
-
     const results = await AladinRequest.find(query);
 
     return results.map(extractRequestFromResult);
 }
 
+function searchRequestsByTags(tags) {
+    return searchRequests({
+        'requestBody.tags': {
+            $elemMatch: {
+                $in: tags
+            }
+        },
+        completed: false
+    });
+}
+
+function getRequestsByUserId(userId) {
+    return searchRequests({ userId });
+}
+
 async function completeRequest(requestId, userId) {
-    const result = await AladinRequest.findByIdAndUpdate(requestId, { completed: true });
+    const update = {
+        completedByUser: userId,
+        completed: true
+    };
+    const result = await AladinRequest.findByIdAndUpdate(requestId, update);
 
     return extractRequestFromResult(result);
 }
 
 function extractRequestFromResult(result) {
+    if (!result) {
+        return null;
+    }
     result._doc.requestId = result._doc._id;
     delete result._doc._id;
     delete result._doc.__v;

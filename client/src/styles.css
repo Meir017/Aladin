@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: "VarelaRound";
+    src: url('./assets/fonts/VarelaRound-Regular.ttf');
+}
+
+
 body {
-    background: #dde1e6;
+    margin: 0;
+    background: #dee0f7;
     direction: rtl;
+}
+
+body * {
+    font-family: "VarelaRound", Verdana, Tahoma;
 }
