@@ -1,19 +1,27 @@
 
 
-<md-grid-list id="ala-post-feed" cols="2"> 
+<section id="ala-post-feed" class="flex-container" fxLayout="row wrap"> 
 
-  <md-grid-tile id="ala-comments">
+  <div id="ala-posts" class="flex-item" fxFlex="50%">
+
+      <md-list id="ala-post-list" *ngIf="posts">
+        <h2 id="ala-post-list-title">בקשות:</h2>
+        <div md-list-item class="ala-post" *ngFor="let post of posts"> 
+          <ala-post [request]="post"></ala-post>
+        </div> 
+      </md-list>
       
-  </md-grid-tile>
+  </div>
 
-  <md-grid-tile id="ala-posts">
-    
-    <md-list id="ala-post-list" *ngIf="posts">
-      <md-list-item class="ala-post" *ngFor="let post of posts"> 
-        <ala-post [request]="post"></ala-post>
-      </md-list-item> 
-    </md-list>
+  <div id="ala-replies" class="flex-item" fxFlex="50%">
+      
+      <md-list id="ala-reply-list" *ngIf="posts">
+        <h2 id="ala-reply-list-title">הצעות:</h2>
+        <div md-list-item class="ala-reply" *ngFor="let reply of post.replies"> 
+          <ala-post [request]="reply"></ala-post>
+        </div> 
+      </md-list>
 
-  </md-grid-tile>
+  </div>
 
-</md-grid-list>
+</section>

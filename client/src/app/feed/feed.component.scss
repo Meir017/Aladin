@@ -1,17 +1,13 @@
-md-grid-list#ala-post-feed {
+section#ala-post-feed {
     
-    md-grid-tile#ala-posts {
+    div#ala-posts {
         
         md-list#ala-post-list {
-            width: 100%;
+            width: 90%;
+            margin-right: 1em;
 
-            md-list-item.ala-post {
-                margin: 3.8em 0;
-
-                ala-post {
-                    width: 90%;
-                }
-
+            div[md-list-item] {
+                margin: 1em 0;
             }
 
         }
