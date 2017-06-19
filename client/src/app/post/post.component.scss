@@ -2,21 +2,14 @@ md-card.ala-post-card {
   padding: 0.6em;
   background: white;
 
-  div.ala-post-image-holder {
-    display: inline-block;
-    overflow: hidden;
-    width: 4em;
-    height: 4em;
+  div.ala-post-image {
+    background-image: url('../../assets/aladin.png');
+    background-size: cover;
 
-    border: 1px solid black;
-    border-radius: 50em;
-
-    img.ala-post-image {
-        margin-left: 0.2em;
-        width: 3.6em;
-        border-radius: 50em;
+    &.mat-card-avatar {
+      width: 60px;
+      height: 60px;
     }
-
   }
 
   p.ala-post-text {
