@@ -12,12 +12,21 @@ md-card.ala-post-card {
     }
   }
 
+  span.ala-post-date {
+    position: absolute;
+    top: 0.9em;
+    right: 6rem;
+
+    font-size: 0.9em;
+    color: gray;
+  }
+
   p.ala-post-text {
     display: inline-block;
     margin: 0;
     position: absolute;
     top: 2em;
-    left: 6em;
+    right: 6rem;
   }
 
 }
