@@ -1,5 +1,13 @@
-<nav>
-  <a routerLink="/profile" routerLinkActive="active">Profile</a>
-  <a routerLink="/feed" routerLinkActive="active">Feed</a>
-</nav>
+<md-toolbar color="primary">
+  <span>Aladin</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+
+  <nav>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/feed" routerLinkActive="active">Feed</a>
+  </nav>
+</md-toolbar>
+
 <router-outlet></router-outlet>

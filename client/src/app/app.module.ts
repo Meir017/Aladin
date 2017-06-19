@@ -9,7 +9,7 @@ import { appRoutes } from "app/app.routes";
 import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
 
-import { MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
+import { MdToolbarModule, MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { MdCardModule, MdListModule, MdGridListModule } from '@angular/material'
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MdToolbarModule,
     MdCardModule,
     MdListModule,
     MdGridListModule,
