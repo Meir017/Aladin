@@ -8,7 +8,7 @@ import { AlaMyRequest } from "app/ala-my-request";
 @Injectable()
 export class MainService {
 
-  private requestSearchUrl: string = 'http://1.1.0.79:3000/request/_search';
+  private requestSearchUrl: string = 'http://1.1.0.79:3000/request';
   private requestUserhUrl: string = 'http://1.1.0.79:3000/request/user';
 
   constructor(private http: Http) { }
@@ -26,14 +26,7 @@ export class MainService {
   }
 
   getPosts(): Promise<AlaRequest[]>{
-      let searchQuery = {
-        query: { },
-        "$orderby": {
-          date: -1
-        }
-      };
-
-      return this.http.get(this.requestSearchUrl, searchQuery)
+      return this.http.get(this.requestSearchUrl)
                   .catch(this.handleError)
                   .map(this.extractData).toPromise();
   }

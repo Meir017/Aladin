@@ -8,8 +8,8 @@
 
   <md-grid-tile id="ala-posts">
     
-    <md-list id="ala-post-list">
-      <md-list-item class="ala-post" *ngFor="let post of posts | async"> 
+    <md-list id="ala-post-list" *ngIf="posts">
+      <md-list-item class="ala-post" *ngFor="let post of posts"> 
         <ala-post [request]="post"></ala-post>
       </md-list-item> 
     </md-list>
