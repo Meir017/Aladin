@@ -10,6 +10,8 @@ function routes(server) {
     server.post('/request', createRequest);
     server.get('/request/:requestId', getRequest);
 
+    server.post('/request/_search', searchRequests)
+
     server.get('postman-collection', getPostmanCollection);
 }
 
@@ -33,6 +35,14 @@ function getPostmanCollection(req, res, next) {
     const postmanCollection = require('./postman-collection.json');
 
     res.json(200, postmanCollection);
+}
+
+function searchRequests(req, res, next) {
+    const query = req.body.query;
+
+    const response = services.searchRequests(query);
+
+    res.json(200, response);
 }
 
 module.exports = routes;

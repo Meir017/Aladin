@@ -43,6 +43,26 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Search requests",
+			"request": {
+				"url": "http://localhost:3000/request/_search",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":{\n\t\t\"userId\": 'my-user-id'\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
