@@ -63,6 +63,26 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Complete request",
+			"request": {
+				"url": "http://localhost:3000/request/5948014a15b5ba6f988f3a46/complete",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"krispen\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

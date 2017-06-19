@@ -10,6 +10,8 @@ import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
 
 import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
+import { MainService } from "app/main.service";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -25,10 +27,11 @@ import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdGridList
     MdButtonModule,
     MdCardModule,
     MdListModule,
+    HttpModule,
     MdGridListModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
