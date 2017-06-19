@@ -6,7 +6,7 @@ import { AlaRequestDetails } from "app/ala-request-details";
 @Component({
   selector: 'ala-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 
