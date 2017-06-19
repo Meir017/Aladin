@@ -5,6 +5,9 @@ import { Observable } from "rxjs/Observable";
 import { CreateRequest } from "app/create-request";
 import { ADUserService } from "app/ad-user.service";
 import { ADUser } from "app/ad-user";
+import { AlaReply } from "app/ala-reply";
+import { AlaUser } from "app/ala-user";
+import { AlaCreateReply } from "app/ala-create-reply";
 
 @Component({
   selector: 'ala-feed',
@@ -41,4 +44,18 @@ export class FeedComponent implements OnInit {
     this.service.createRequest(request);
   }
 
+  completeRequest(requestId: string){
+    let userId = this.loggedInUser.userId;
+    
+    this.service.completeRequest(requestId, userId);
+  }
+
+  addReply(requestId: string, text: string){
+     let creteReply: AlaCreateReply = {
+          text,
+          userId: this.loggedInUser.userId
+      };
+
+      this.service.addReply(requestId, creteReply);
+  }
 }

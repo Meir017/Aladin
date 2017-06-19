@@ -6,13 +6,15 @@ import './rxjs-operators';
 import { AlaMyRequest } from "app/ala-my-request";
 import { CreateRequest } from "app/create-request";
 import { CreateRequestResponse } from "app/create-request-response";
+import { AlaReply } from "app/ala-reply";
+import { AlaCreateReply } from "app/ala-create-reply";
 
 @Injectable()
 export class MainService {
 
   private baseUrl: string = "http://1.1.0.79:3000";
   private requestUrl: string = `${this.baseUrl}/request`;
-  private requestUserUrl: string = `${this.baseUrl}/request/user`;
+  private requestUserUrl: string = `${this.requestUrl}/user`;
 
   constructor(private http: Http) { }
 
@@ -38,6 +40,25 @@ export class MainService {
     return this.http.post(this.requestUrl, createRequest)
                   .catch(this.handleError)
                   .map(this.extractCreateData).toPromise();
+  }
+
+  completeRequest(requestId: string, userId: string):Promise<AlaRequest>{
+    return this.http.post(`${this.requestUrl}/${requestId}/complete`, {userId})
+                  .catch(this.handleError)
+                  .map(this.extractAlaRequest).toPromise();
+  }
+
+  addReply(requestId: string, createReply: AlaCreateReply):Promise<AlaRequest>{
+    return this.http.post(`${this.requestUrl}/${requestId}/reply`, createReply)
+                  .catch(this.handleError)
+                  .map(this.extractAlaRequest).toPromise();
+  }
+
+  private extractAlaRequest(res: Response): AlaRequest {
+    let body: any = res.json();
+    let response: AlaRequest = body;
+    
+    return response;
   }
 
   private extractCreateData(res: Response): CreateRequestResponse {
