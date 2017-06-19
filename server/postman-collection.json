@@ -187,6 +187,17 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Get requests",
+			"request": {
+				"url": "http://localhost:3000/request",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
