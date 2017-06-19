@@ -17,7 +17,7 @@ import { FeedComponent } from './feed/feed.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes)    
   ],
   providers: [],
   bootstrap: [AppComponent]
