@@ -1,3 +1,21 @@
-<p>
-  profile works!
-</p>
+<section id="ala-profile-info"> 
+
+  <div id="ala-profile">
+    <md-card>
+      <div>
+        <img src="../../assets/aladin.jpg" id="ala-profile-image"/>
+      </div>
+      <div>
+      <span id="ala-profile-name">{{name}}</span>
+      </div>
+      <div>
+        <md-list id="ala-my-posts" >
+          <md-list-item *ngFor="let post of myPosts"> 
+            <ala-post [request]="post"></ala-post>
+          </md-list-item>
+        </md-list>
+      </div>
+    </md-card>
+  </div>
+
+</section>

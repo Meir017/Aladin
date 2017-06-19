@@ -9,7 +9,9 @@ import { appRoutes } from "app/app.routes";
 import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
 
-import { MdCardModule } from '@angular/material';
+import { MdCardModule, MdListModule, MdGridListModule } from '@angular/material';
+import { MainService } from "app/main.service";
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import { MdCardModule } from '@angular/material';
     BrowserModule,
     BrowserAnimationsModule,
     MdCardModule,
+    MdListModule,
+    HttpModule,
+    MdGridListModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
