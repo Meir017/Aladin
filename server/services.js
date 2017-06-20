@@ -39,9 +39,7 @@ async function getRequests() {
 
     const requests = results.map(extractRequestFromResult);
 
-    var t = _.orderBy(requests, 'user.rating', 'desc');
-
-    return t;
+    return _.orderBy(requests, 'user.rating', 'desc');
 }
 
 async function createRequest(request) {
@@ -80,6 +78,14 @@ async function completeRequest(requestId, userId) {
         completed: true,
         updated: new Date()
     };
+    await AladinRequest.update({
+        _id: new ObjectId(requestId),
+        'replies.userId': userId
+    }, {
+        $set: {
+            'replies.$.completed': true
+        }
+    });
     const result = await AladinRequest.findByIdAndUpdate(requestId, update);
 
     await refreshRatings();
@@ -93,6 +99,7 @@ async function addRequestReply(requestId, reply) {
     }
 
     reply.created = new Date();
+    reply.completed = false;
 
     const update = {
         $push: {
