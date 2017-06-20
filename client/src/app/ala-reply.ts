@@ -1,9 +1,9 @@
 import { AlaUser } from "app/ala-user";
+import { AlaPost } from "app/ala-post";
 
-export class AlaReply {
+export class AlaReply extends AlaPost {
 
-    text: string;
-    userId: AlaUser;
-
-    constructor(){}
+    constructor() {
+        super();
+    }
 }

@@ -14,6 +14,7 @@ import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@an
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
+import { StoreService } from "app/store.service";
 import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CreationDialogComponent } from './creation-dialog/creation-dialog.compo
   entryComponents: [],
   providers: [
     MainService,
-    ADUserService
+    ADUserService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })
