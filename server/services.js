@@ -7,7 +7,8 @@ module.exports = {
     getRequestsByUserId,
     completeRequest,
     rateRequest,
-    addRequestReply
+    addRequestReply,
+    getRatings
 };
 
 const { AladinRequest } = require('./dal');
@@ -89,6 +90,17 @@ async function addRequestReply(requestId, reply) {
     const result = await AladinRequest.findByIdAndUpdate(requestId, update);
 
     return extractRequestFromResult(result);
+}
+
+async function getRatings() {
+    const results = await AladinRequest.aggregate({ $match: { completed: true } }, { $group: { _id: "$userId", rating: { $sum: 1 } } });
+
+    return results.map(result => {
+        return {
+            userId: result._id,
+            rating: result.rating
+        }
+    });
 }
 
 function extractRequestFromResult(result) {

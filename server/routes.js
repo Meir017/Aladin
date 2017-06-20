@@ -15,6 +15,8 @@ function routes(server) {
 
     server.post('/request/:requestId/reply', addRequestReply);
 
+    server.get('/ratings', getRatings);
+
     server.get('postman-collection', getPostmanCollection);
 }
 
@@ -69,7 +71,7 @@ async function completeRequest(req, res, next) {
 
     const response = await services.completeRequest(requestId, userId);
 
-    res.status(204);
+    res.json(200, response);
 }
 
 async function rateRequest(req, res, next) {
@@ -81,6 +83,12 @@ async function addRequestReply(req, res, next) {
     const reply = req.body;
 
     const response = await services.addRequestReply(requestId, reply);
+
+    res.json(200, response);
+}
+
+async function getRatings(req, res, next) {
+    const response = await services.getRatings();
 
     res.json(200, response);
 }
