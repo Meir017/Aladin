@@ -17,9 +17,9 @@
       <md-card-content>
         <div>
           <md-list id="ala-my-posts" *ngIf="myPosts">
-            <md-list-item *ngFor="let post of myPosts"> 
+            <div md-list-item class="ala-my-posts-item" *ngFor="let post of myPosts"> 
               <ala-post [post]="post"></ala-post>
-            </md-list-item>
+            </div>
           </md-list>
         </div>
       </md-card-content>

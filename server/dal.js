@@ -20,7 +20,8 @@ const aladinRequests = new Schema({
         text: String,
         tags: [String],
         userId: String,
-        created: Date
+        created: Date,
+        completed: Boolean
     }],
     created: Date,
     updated: Date

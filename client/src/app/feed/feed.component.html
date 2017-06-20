@@ -2,6 +2,11 @@
 
 <section id="ala-post-feed"> 
 
+  <section id="ala-post-feed-create" class="flex-container" fxLayout="row wrap">
+    <button id="ala-post-feed-create-button" md-button (click)="openCreationDialog()">צור בקשה</button>
+    <ala-creation-dialog [hidden]="!showCreationDialog"  [@dialogAnimation]="!showCreationDialog" (postCreationEvent)="postCreationData($event)" (closeCreationEvent)="closeCreationDialog($event)"></ala-creation-dialog>
+  </section>
+
   <section id="ala-post-feed-view" class="flex-container" fxLayout="row wrap">
 
   <div id="ala-posts" class="flex-item" fxFlex="50%">
@@ -26,10 +31,5 @@
 
   </div>
 
-  </section>
-
-  <section id="ala-post-feed-create" class="flex-container" fxLayout="row wrap">
-    <button id="ala-post-feed-create-button" md-button (click)="openCreationDialog()">צור בקשה</button>
-    <ala-creation-dialog [hidden]="!showCreationDialog"  [@dialogAnimation]="!showCreationDialog" (postCreationEvent)="postCreationData($event)" (closeCreationEvent)="closeCreationDialog($event)"></ala-creation-dialog>
   </section>
 </section>

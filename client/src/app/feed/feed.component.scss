@@ -1,4 +1,16 @@
-section#ala-post-feed {
+section#ala-post-feed {    
+
+    section#ala-post-feed-create {
+        margin-top: 2em;
+        padding-right: 1em;
+
+        button#ala-post-feed-create-button {
+            background-image: -webkit-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: -moz-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: -o-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: linear-gradient(#FFCB03 0%, #FF822E 100%);
+        }
+    }
     
     section#ala-post-feed-view {
         div#ala-posts {
@@ -21,17 +33,6 @@ section#ala-post-feed {
             }
         }
 
-    }
-    
-    section#ala-post-feed-create {
-        padding-right: 1em;
-
-        button#ala-post-feed-create-button {
-            background-image: -webkit-linear-gradient(#FFCB03 0%, #FF822E 100%);
-            background-image: -moz-linear-gradient(#FFCB03 0%, #FF822E 100%);
-            background-image: -o-linear-gradient(#FFCB03 0%, #FF822E 100%);
-            background-image: linear-gradient(#FFCB03 0%, #FF822E 100%);
-        }
     }
 
 }

@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
     })
     .then((requests: AlaRequest[])=>{
       this.myPosts = requests.map((post: AlaRequest)=>{
-        let alaPost: AlaPost = {user: post.user, created: post.created, requestBody: post.requestBody}
+        let alaPost: AlaPost = {user: post.user, created: post.created, requestBody: post.requestBody, viewOnly: true};
         return alaPost;
       });
     });

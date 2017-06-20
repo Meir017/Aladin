@@ -45,13 +45,10 @@ section#ala-profile-info {
                 
 
                 md-list#ala-my-posts {
+                    width: 50%;
 
-                    md-list-item {
-                        margin: 3.8em 0;
-
-                        ala-post {
-                            width: 50%;
-                        }
+                    div.ala-my-posts-item {
+                        margin: 1em 0;
                     }
 
                 }
