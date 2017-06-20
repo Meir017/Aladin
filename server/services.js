@@ -35,7 +35,7 @@ async function getRequest(requestId) {
 }
 
 async function getRequests() {
-    const results = await AladinRequest.find({});
+    const results = await AladinRequest.find({ completed: false });
 
     const requests = results.map(extractRequestFromResult);
 
