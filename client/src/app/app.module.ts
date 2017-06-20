@@ -14,6 +14,7 @@ import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@an
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
+import { StoreService } from "app/store.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ADUserService } from "app/ad-user.service";
   ],
   providers: [
     MainService,
-    ADUserService
+    ADUserService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })

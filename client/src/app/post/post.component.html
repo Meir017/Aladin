@@ -1,7 +1,8 @@
 <md-card class="ala-post-card">
   <md-card-header>
-    <div md-card-avatar class="ala-post-image"></div>
+    <div md-card-avatar class="ala-post-image" (click)="navToProfile(post.user.id)"></div>
   </md-card-header>
-  <span class="ala-post-date">{{request.created | date :  "dd/MM/yyyy"}}</span>
-  <p class="ala-post-text">{{request.requestBody.text}}</p>
+  <span class="ala-post-date">{{post.created | date :  "dd/MM/yyyy hh:mm:ss"}}</span>
+  <p class="ala-post-text">{{post.requestBody.text}}</p>
+  <p>{{post.user.rating}}</p>
 </md-card>

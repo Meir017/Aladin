@@ -8,6 +8,7 @@ import { ADUser } from "app/ad-user";
 import { AlaReply } from "app/ala-reply";
 import { AlaUser } from "app/ala-user";
 import { AlaCreateReply } from "app/ala-create-reply";
+import { StoreService } from "app/store.service";
 
 @Component({
   selector: 'ala-feed',
@@ -17,9 +18,10 @@ import { AlaCreateReply } from "app/ala-create-reply";
 export class FeedComponent implements OnInit {
 
   loggedInUser:ADUser;
-  posts:AlaRequest[];
+  selectedRequest: AlaRequest;
+  requests:AlaRequest[];
   
-  constructor(private service: MainService, private userService: ADUserService) {
+  constructor(private service: MainService, private userService: ADUserService, private store: StoreService) {
     
    }
 
@@ -30,9 +32,14 @@ export class FeedComponent implements OnInit {
     });
 
      this.service.getRequests()
-     .then((posts)=>{
-       this.posts = posts;
+     .then((requests)=>{
+       this.requests = requests;
      });
+  }
+
+  selectRequest(request: AlaRequest){
+    this.store.selectedRequest = request;
+    this.selectedRequest = this.store.selectedRequest;
   }
 
   // TODO: Support 'suggestions'
@@ -46,7 +53,7 @@ export class FeedComponent implements OnInit {
 
   completeRequest(requestId: string){
     let userId = this.loggedInUser.userId;
-    
+
     this.service.completeRequest(requestId, userId);
   }
 
