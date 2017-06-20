@@ -9,7 +9,7 @@
       <md-list id="ala-post-list" *ngIf="requests">
         <h2 id="ala-post-list-title">בקשות:</h2>
         <div md-list-item class="ala-post" *ngFor="let request of requests"> 
-          <ala-post [post]="request" (click)="selectRequest(request)"></ala-post>
+          <ala-post [post]="request" (click)="selectRequest($event, request)"></ala-post>
         </div> 
       </md-list>
       

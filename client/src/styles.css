@@ -15,3 +15,5 @@ body {
 body * {
     font-family: "VarelaRound", Verdana, Tahoma;
 }
+
+.material-icons.orange600 { color: #ff940d; }

@@ -4,16 +4,23 @@ section#ala-post-feed {
         div#ala-posts {
             
             md-list#ala-post-list {
-                width: 90%;
                 margin-right: 1em;
-
-                div[md-list-item] {
-                    margin: 1em 0;
-                }
-
             }
 
         }
+
+        div#ala-replies {
+
+        }
+
+        md-list {
+            width: 90%;
+
+            div[md-list-item] {
+                margin: 1em 0;
+            }
+        }
+
     }
     
     section#ala-post-feed-create {
