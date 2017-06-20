@@ -1,17 +1,30 @@
 section#ala-post-feed {
     
-    div#ala-posts {
-        
-        md-list#ala-post-list {
-            width: 90%;
-            margin-right: 1em;
+    section#ala-post-feed-view {
+        div#ala-posts {
+            
+            md-list#ala-post-list {
+                width: 90%;
+                margin-right: 1em;
 
-            div[md-list-item] {
-                margin: 1em 0;
+                div[md-list-item] {
+                    margin: 1em 0;
+                }
+
             }
 
         }
+    }
+    
+    section#ala-post-feed-create {
+        padding-right: 1em;
 
+        button#ala-post-feed-create-button {
+            background-image: -webkit-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: -moz-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: -o-linear-gradient(#FFCB03 0%, #FF822E 100%);
+            background-image: linear-gradient(#FFCB03 0%, #FF822E 100%);
+        }
     }
 
 }

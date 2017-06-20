@@ -8,14 +8,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { appRoutes } from "app/app.routes";
 import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
+import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@angular/material';
+import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdInputModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
 import { StoreService } from "app/store.service";
-import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { CreationDialogComponent } from './creation-dialog/creation-dialog.compo
     MdButtonModule,
     MdCardModule,
     MdListModule,
+    MdInputModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],

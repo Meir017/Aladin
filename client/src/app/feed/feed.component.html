@@ -1,6 +1,8 @@
 
 
-<section id="ala-post-feed" class="flex-container" fxLayout="row wrap"> 
+<section id="ala-post-feed"> 
+
+  <section id="ala-post-feed-view" class="flex-container" fxLayout="row wrap">
 
   <div id="ala-posts" class="flex-item" fxFlex="50%">
 
@@ -24,6 +26,11 @@
 
   </div>
 
+  </section>
+
+  <section id="ala-post-feed-create" class="flex-container" fxLayout="row wrap">
+    <button id="ala-post-feed-create-button" md-button (click)="openCreationDialog()">צור בקשה</button>
+    <ala-creation-dialog *ngIf="showCreationDialog" [@dialogAnimation]="showCreationDialog" (postCreationData)="postCreationData"></ala-creation-dialog>
+  </section>
 </section>
 
-<button md-button (click)="openCreationDialog()">צור בקשה</button>
