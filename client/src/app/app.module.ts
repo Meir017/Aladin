@@ -11,13 +11,14 @@ import { PostComponent } from './post/post.component';
 import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdInputModule } from '@angular/material';
+import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdInputModule, MdChipsModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
 import { StoreService } from "app/store.service";
 import { SearchPipe } from './search.pipe';
 import { FormsModule } from "@angular/forms";
+import { ColorsService } from "app/colors.service";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FormsModule } from "@angular/forms";
     MdCardModule,
     MdListModule,
     MdInputModule,
+    MdChipsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
@@ -45,7 +47,8 @@ import { FormsModule } from "@angular/forms";
   providers: [
     MainService,
     ADUserService,
-    StoreService
+    StoreService,
+    ColorsService
   ],
   bootstrap: [AppComponent]
 })

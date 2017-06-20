@@ -1,6 +1,17 @@
 md-card.ala-post-card {
+  box-sizing: content-box;
   padding: 0.6em;
   background: white;
+
+  cursor: pointer;
+
+  &.selected {
+    border: 2px solid #49b749;
+  }
+
+  &.completed {
+    border: 2px solid #e25353;
+  }
 
   div.ala-post-image {
     background-image: url('../../assets/images/aladin.png');
@@ -12,10 +23,28 @@ md-card.ala-post-card {
     }
   }
 
+  span.ala-post-rating {
+    position: absolute;
+    top: 1.2em;
+    right: 5rem;
+
+    i {
+      font-size: 2.4em;
+    }
+
+    span.ala-post-rating-number {
+      position: absolute;
+      top: 0.6em;
+      right: 0.9em;
+      
+      color: white;
+    }
+  }
+
   span.ala-post-date {
     position: absolute;
     top: 0.9em;
-    right: 6rem;
+    right: 8rem;
 
     font-size: 0.9em;
     color: gray;
@@ -26,7 +55,27 @@ md-card.ala-post-card {
     margin: 0;
     position: absolute;
     top: 2em;
-    right: 6rem;
+    right: 8rem;
+  }
+
+  div.ala-reply-panel {
+    display: inline-block;
+    position: absolute;
+    left: 1em;
+    bottom: 0.4em;
+  }
+
+  md-card-content {
+    margin-top: 0.6em;
+
+    md-chip-list.ala-post-tags {
+      
+      md-chip {
+        margin-left: 0.6em;
+        outline: none;
+      }
+
+    }
   }
 
 }
