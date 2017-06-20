@@ -6,21 +6,20 @@
     <h1 class="ala-dialog-title">בקשה חדשה</h1>
 
     <form class="ala-dialog-form">
-
       <table>
         <tr>
           <md-input-container class="ala-dialog-help">
-            <input mdInput placeholder="במה את צריך עזרה?">
+            <input mdInput name="help" placeholder="במה את צריך עזרה?" [(ngModel)]="postCreationData.help">
           </md-input-container> 
         </tr>
         <tr>
           <md-input-container class="ala-dialog-suggestion">
-            <input mdInput placeholder="במה את מוכן לעזור?">
+            <input mdInput name="suggestion" placeholder="במה את מוכן לעזור?"  [(ngModel)]="postCreationData.suggestion">
           </md-input-container>
         </tr>          
         <tr>
           <md-input-container class="ala-dialog-categories">
-            <input mdInput placeholder="הכנס בבקשה את קטגוריות הבקשה עם פסיקים ביניהם">
+            <input mdInput name="tags" placeholder="הכנס בבקשה את קטגוריות הבקשה עם פסיקים ביניהם"  [(ngModel)]="tags">
           </md-input-container>
         </tr>
       </table>

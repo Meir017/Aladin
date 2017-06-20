@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate, state, HostBinding, HostListener } from '@angular/core';
 
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
@@ -37,7 +37,6 @@ export class FeedComponent implements OnInit {
   selectedRequest: AlaRequest;
   requests: AlaRequest[];
   showCreationDialog: boolean;
-  postCreationData: Object;
   
   constructor(private service: MainService, private userService: ADUserService, private store: StoreService) {
     this.showCreationDialog = false;
@@ -49,10 +48,24 @@ export class FeedComponent implements OnInit {
       this.loggedInUser = user;
     });
 
-     this.service.getRequests()
+    this.service.getRequests()
      .then((requests)=>{
        this.requests = requests;
      });
+  }
+
+  private clearRequests(){
+    for(let index = 0; index < this.requests.length; index++){
+      this.requests.pop();
+    }
+  }
+
+  refreshRequests(){
+    this.clearRequests();
+    this.service.getRequests()
+      .then((reqs)=>{
+        reqs.forEach((request)=>this.requests.push(request));
+      })
   }
 
   selectRequest(request: AlaRequest){
@@ -66,7 +79,7 @@ export class FeedComponent implements OnInit {
       userId: this.loggedInUser.userId,
       requestBody: {text, tags}
     };
-    this.service.createRequest(request);
+    return this.service.createRequest(request);
   }
 
   completeRequest(requestId: string){
@@ -94,5 +107,13 @@ export class FeedComponent implements OnInit {
 
   closeCreationDialog() {
     this.showCreationDialog = false;
+  }
+
+  postCreationData(res){
+    this.createRequest(res.help, res.tags)
+    .then(()=>{
+      this.refreshRequests();
+    })
+    this.closeCreationDialog();
   }
 }

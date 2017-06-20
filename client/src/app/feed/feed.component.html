@@ -30,7 +30,6 @@
 
   <section id="ala-post-feed-create" class="flex-container" fxLayout="row wrap">
     <button id="ala-post-feed-create-button" md-button (click)="openCreationDialog()">צור בקשה</button>
-    <ala-creation-dialog *ngIf="showCreationDialog" [@dialogAnimation]="showCreationDialog" (postCreationData)="postCreationData"></ala-creation-dialog>
+    <ala-creation-dialog [hidden]="!showCreationDialog"  [@dialogAnimation]="!showCreationDialog" (postCreationEvent)="postCreationData($event)" (closeCreationEvent)="closeCreationDialog($event)"></ala-creation-dialog>
   </section>
 </section>
-

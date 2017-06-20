@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ala-creation-dialog',
@@ -6,23 +6,35 @@ import { Component, OnInit, Output } from '@angular/core';
   styleUrls: ['./creation-dialog.component.scss']
 })
 export class CreationDialogComponent implements OnInit {
-  @Output() postCreationData: Object;
+  @Output() postCreationEvent = new EventEmitter<any>();
+  @Output() closeCreationEvent = new EventEmitter<any>();
+  postCreationData: any;
+  tags: string;
 
-  constructor() { }
+  constructor() { 
+    this.reset();
+  }
 
   ngOnInit() {
-  }
-  
-  closeCreationDialog() {
-    
   }
 
   
   finishCreationDialog() {
+    this.postCreationData.tags = this.tags.split(',');
+    this.postCreationEvent.emit(this.postCreationData);
+    this.reset();
+  }
+
+  closeCreationDialog(){
+    this.closeCreationEvent.emit();
+  }
+
+  reset(){
     this.postCreationData = {
         help: "",
         suggestion: "",
         tags: []
     }
+    this.tags = "";
   }
 }
