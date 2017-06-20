@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
 import { Observable } from "rxjs/Observable";
@@ -16,12 +17,10 @@ import { AlaCreateReply } from "app/ala-create-reply";
 })
 export class FeedComponent implements OnInit {
 
-  loggedInUser:ADUser;
-  posts:AlaRequest[];
+  loggedInUser: ADUser;
+  posts: AlaRequest[];
   
-  constructor(private service: MainService, private userService: ADUserService) {
-    
-   }
+  constructor(private service: MainService, private userService: ADUserService) {}
 
   ngOnInit() {
     this.userService.getLoggedInUser()
@@ -57,5 +56,9 @@ export class FeedComponent implements OnInit {
       };
 
       this.service.addReply(requestId, creteReply);
+  }
+
+  openCreationDialog() {
+    
   }
 }

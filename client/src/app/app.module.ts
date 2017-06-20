@@ -14,13 +14,15 @@ import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@an
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
+import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     FeedComponent,
-    PostComponent
+    PostComponent,
+    CreationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { ADUserService } from "app/ad-user.service";
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
+  entryComponents: [],
   providers: [
     MainService,
     ADUserService
