@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
 
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
@@ -12,6 +12,20 @@ import { AlaCreateReply } from "app/ala-create-reply";
 
 @Component({
   selector: 'ala-feed',
+  animations: [
+    trigger('dialogAnimation', [
+        transition(':enter', [
+          style({opacity: 0}),
+          animate('500ms', style({opacity: 1}))
+        ]
+      ),
+      transition(':leave', [
+          style({opacity: 1}),
+          animate('500ms', style({opacity: 0})),
+        ]
+      )]
+    )
+  ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
@@ -19,8 +33,12 @@ export class FeedComponent implements OnInit {
 
   loggedInUser: ADUser;
   posts: AlaRequest[];
+  showCreationDialog: boolean;
+  postCreationData: Object;
   
-  constructor(private service: MainService, private userService: ADUserService) {}
+  constructor(private service: MainService, private userService: ADUserService) {
+    this.showCreationDialog = false;
+  }
 
   ngOnInit() {
     this.userService.getLoggedInUser()
@@ -28,7 +46,7 @@ export class FeedComponent implements OnInit {
       this.loggedInUser = user;
     });
 
-     this.service.getRequests()
+    this.service.getRequests()
      .then((posts)=>{
        this.posts = posts;
      });
@@ -59,6 +77,14 @@ export class FeedComponent implements OnInit {
   }
 
   openCreationDialog() {
-    
+    this.showCreationDialog = true;
+  }
+
+  finishDialog() {
+    this.showCreationDialog = false;
+  }
+
+  closeCreationDialog() {
+    this.showCreationDialog = false;
   }
 }
