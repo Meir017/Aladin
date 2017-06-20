@@ -16,7 +16,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
-  userId: number;
+  userId: string;
   user: ADUser;
   myPosts: AlaPost[];
 
@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.route.params.first().toPromise()
     .then((params: Params) => {
+      this.userId = params.userId;
       return this.userService.getUserById(params.userId)
     })
     .then((user: ADUser)=>{
