@@ -15,13 +15,15 @@
 
   <div id="ala-replies" class="flex-item" fxFlex="50%">
       
-      <md-list id="ala-reply-list" *ngIf="posts">
+      <!--<md-list id="ala-reply-list" *ngIf="posts">
         <h2 id="ala-reply-list-title">הצעות:</h2>
         <div md-list-item class="ala-reply" *ngFor="let reply of post.replies"> 
           <ala-post [request]="reply"></ala-post>
         </div> 
-      </md-list>
+      </md-list>-->
 
   </div>
 
 </section>
+
+<button md-button (click)="openCreationDialog()">צור בקשה</button>
