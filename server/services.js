@@ -106,10 +106,19 @@ async function addRequestReply(requestId, reply) {
 }
 
 async function getRatings() {
-    const rawRatings = await AladinRequest.aggregate({ $match: { completed: true } }, { $group: { _id: "$userId", rating: { $sum: 1 } } });
+    const rawRatings1 = await AladinRequest.aggregate({ $match: { completed: true } }, { $group: { _id: "$userId", rating: { $sum: 1 } } });
+    const rawRatings2 = await AladinRequest.aggregate({ $match: { completed: true } }, { $group: { _id: "$completedByUser", rating: { $sum: 1 } } });
     const ratings = {};
-    rawRatings.forEach(result => {
+    rawRatings1.forEach(result => {
         ratings[result._id] = result.rating
+    });
+    rawRatings2.forEach(result => {
+        if (ratings[result._id]) {
+            ratings[result._id] += result.rating
+        } else {
+            ratings[result._id] = result.rating
+        }
+
     });
     return ratings;
 }

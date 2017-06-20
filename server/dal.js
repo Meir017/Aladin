@@ -5,6 +5,7 @@ mongoose.connect('mongodb://52.232.117.146:27017/aladin');
 
 const aladinRequests = new Schema({
     userId: String,
+    completedByUser: String,
     requestId: String,
     completed: Boolean,
     requestBody: {
