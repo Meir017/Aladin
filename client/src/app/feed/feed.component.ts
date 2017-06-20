@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
 
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
@@ -13,17 +13,34 @@ import { StoreService } from "app/store.service";
 
 @Component({
   selector: 'ala-feed',
+  animations: [
+    trigger('dialogAnimation', [
+        transition(':enter', [
+          style({opacity: 0}),
+          animate('500ms', style({opacity: 1}))
+        ]
+      ),
+      transition(':leave', [
+          style({opacity: 1}),
+          animate('500ms', style({opacity: 0})),
+        ]
+      )]
+    )
+  ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
 
+
   loggedInUser:ADUser;
   selectedRequest: AlaRequest;
-  requests:AlaRequest[];
+  requests: AlaRequest[];
+  showCreationDialog: boolean;
+  postCreationData: Object;
   
   constructor(private service: MainService, private userService: ADUserService, private store: StoreService) {
-    
+    this.showCreationDialog = false;
    }
 
   ngOnInit() {
@@ -68,6 +85,14 @@ export class FeedComponent implements OnInit {
   }
 
   openCreationDialog() {
-    
+    this.showCreationDialog = true;
+  }
+
+  finishDialog() {
+    this.showCreationDialog = false;
+  }
+
+  closeCreationDialog() {
+    this.showCreationDialog = false;
   }
 }

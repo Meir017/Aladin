@@ -1,3 +1,33 @@
 <section class="ala-creation-dialog">
-  <h1 class="ala-dialog-title">Works</h1>
+  <div class="ala-backdrop"></div>
+  
+  <section class="ala-dialog">
+
+    <h1 class="ala-dialog-title">בקשה חדשה</h1>
+
+    <form class="ala-dialog-form">
+
+      <table>
+        <tr>
+          <md-input-container class="ala-dialog-help">
+            <input mdInput placeholder="במה את צריך עזרה?">
+          </md-input-container> 
+        </tr>
+        <tr>
+          <md-input-container class="ala-dialog-suggestion">
+            <input mdInput placeholder="במה את מוכן לעזור?">
+          </md-input-container>
+        </tr>          
+        <tr>
+          <md-input-container class="ala-dialog-categories">
+            <input mdInput placeholder="הכנס בבקשה את קטגוריות הבקשה עם פסיקים ביניהם">
+          </md-input-container>
+        </tr>
+      </table>
+
+    </form>
+
+    <button class="ala-dialog-create-button" md-button (click)="closeCreationDialog()">בטל</button>
+    <button class="ala-dialog-create-button" md-button (click)="finishCreationDialog()">סיים</button>
+  
 </section>
