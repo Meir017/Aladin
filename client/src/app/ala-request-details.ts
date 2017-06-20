@@ -1,6 +1,6 @@
 export class AlaRequestDetails {
     text: string;
-    tags: string[];
+    tags?: string[];
     
     constructor(){}
 }
