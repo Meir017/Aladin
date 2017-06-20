@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate, state, ElementRef } from '@angular/core';
 
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
@@ -10,6 +10,8 @@ import { AlaReply } from "app/ala-reply";
 import { AlaUser } from "app/ala-user";
 import { AlaCreateReply } from "app/ala-create-reply";
 import { StoreService } from "app/store.service";
+
+declare var $: any;
 
 @Component({
   selector: 'ala-feed',
@@ -39,7 +41,7 @@ export class FeedComponent implements OnInit {
   showCreationDialog: boolean;
   postCreationData: Object;
   
-  constructor(private service: MainService, private userService: ADUserService, private store: StoreService) {
+  constructor(private service: MainService, private userService: ADUserService, private store: StoreService, private feedElement: ElementRef) {
     this.showCreationDialog = false;
    }
 
@@ -55,7 +57,10 @@ export class FeedComponent implements OnInit {
      });
   }
 
-  selectRequest(request: AlaRequest){
+  selectRequest(event, request: AlaRequest){
+    $(this.feedElement.nativeElement).find('md-card').removeClass("selected");
+    $(event.currentTarget).children('md-card').addClass("selected");
+
     this.store.selectedRequest = request;
     this.selectedRequest = this.store.selectedRequest;
   }
