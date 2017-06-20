@@ -10,12 +10,14 @@ import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
 
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule } from '@angular/material';
+import { MdToolbarModule, MdButtonModule, MdCardModule, MdListModule, MdInputModule } from '@angular/material';
 import { MainService } from "app/main.service";
 import { HttpModule } from "@angular/http";
 import { ADUserService } from "app/ad-user.service";
 import { StoreService } from "app/store.service";
 import { CreationDialogComponent } from './creation-dialog/creation-dialog.component';
+import { SearchPipe } from './search.pipe';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,16 +25,19 @@ import { CreationDialogComponent } from './creation-dialog/creation-dialog.compo
     ProfileComponent,
     FeedComponent,
     PostComponent,
-    CreationDialogComponent
+    CreationDialogComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     MdToolbarModule,
     MdButtonModule,
     MdCardModule,
     MdListModule,
+    MdInputModule,
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],

@@ -5,7 +5,7 @@ import { AlaPost } from "app/ala-post";
 
 export class AlaRequest extends AlaPost {
     
-    user: AlaUser;
+    
     requestId: string
     suggestions?: AlaRequestDetails[];
     replies?: AlaReply;
