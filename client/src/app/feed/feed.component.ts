@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit, trigger, transition, style, animate, state, HostBinding, HostListener } from '@angular/core';
-=======
-import { Component, OnInit, trigger, transition, style, animate, state, ElementRef } from '@angular/core';
->>>>>>> 523e36165211afbbefbf3c6881725f44741cf578
+import { Component, OnInit, trigger, transition, style, animate, state, HostBinding, HostListener, ElementRef } from '@angular/core';
 
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
@@ -91,11 +87,6 @@ export class FeedComponent implements OnInit {
     return this.service.createRequest(request);
   }
 
-  completeRequest(requestId: string){
-    let userId = this.loggedInUser.userId;
-
-    this.service.completeRequest(requestId, userId);
-  }
 
   addReply(requestId: string, text: string){
      let creteReply: AlaCreateReply = {
@@ -104,6 +95,11 @@ export class FeedComponent implements OnInit {
       };
 
       this.service.addReply(requestId, creteReply);
+  }
+
+  completeRequest(userId){
+    let requestId = this.selectedRequest.requestId;
+    this.service.completeRequest(requestId, userId);
   }
 
   openCreationDialog() {

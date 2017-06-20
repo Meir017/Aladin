@@ -6,7 +6,7 @@ import { ADUser } from "app/ad-user";
 export class ADUserService {
 
   mockUser:ADUser = {
-      userId: "123",
+      userId: "meir",
       username: "meir",
       displayName: "אלדין",
       location: "here"

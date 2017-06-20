@@ -12,7 +12,7 @@ import { AlaCreateReply } from "app/ala-create-reply";
 @Injectable()
 export class MainService {
 
-  private baseUrl: string = "http://1.1.0.79:3000";
+  private baseUrl: string = "http://52.232.117.146:50012";
   private requestUrl: string = `${this.baseUrl}/request`;
   private requestSearchUrl: string = `${this.requestUrl}/_search`;
   private requestSearchByTagsUrl: string = `${this.requestSearchUrl}/tags`;

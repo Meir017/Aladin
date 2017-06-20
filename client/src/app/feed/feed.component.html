@@ -20,7 +20,7 @@
       <md-list id="ala-reply-list" *ngIf="selectedRequest">
         <h2 id="ala-reply-list-title">הצעות:</h2>
         <div md-list-item class="ala-reply" *ngFor="let reply of selectedRequest.replies"> 
-          <ala-post [post]="reply"></ala-post>
+          <ala-post [post]="reply" (completeRequestEvent)="completeRequest($event)"></ala-post>
         </div> 
       </md-list>
 

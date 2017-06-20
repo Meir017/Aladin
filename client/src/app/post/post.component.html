@@ -1,4 +1,4 @@
-<md-card class="ala-post-card" [ngClass]="{'completed': post.completed}">
+<md-card class="ala-post-card" [ngClass]="{'completed': isCompleted}">
   <md-card-header>
     <div md-card-avatar class="ala-post-image" (click)="navToProfile(post.user.id)"></div>
   </md-card-header>
@@ -9,7 +9,7 @@
   <span class="ala-post-date">{{post.created | date :  "dd/MM/yyyy hh:mm:ss"}}</span>
   <p class="ala-post-text">{{post.requestBody.text}}</p>
   <div class="ala-reply-panel" *ngIf="!post.replies && !post.completed">
-    <i class="material-icons orange600">check</i>
+    <i class="material-icons orange600" (click)="completeRequest()">check</i>
   </div>
   <md-card-content>
     <md-chip-list class="ala-post-tags">
