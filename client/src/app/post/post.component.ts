@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AlaRequest } from "app/ala-request";
+import { AlaPost } from "app/ala-post";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'ala-post',
@@ -7,11 +8,14 @@ import { AlaRequest } from "app/ala-request";
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  @Input() request: AlaRequest;
+  @Input() post: AlaPost;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  navToProfile(userId: string){
+    this.router.navigate(['/profile', this.post.user.id]);
+  }
 }

@@ -6,6 +6,8 @@ import { AlaMyRequest } from "app/ala-my-request";
 import { Observable } from "rxjs/Observable";
 import { ADUserService } from "app/ad-user.service";
 import { ADUser } from "app/ad-user";
+import { AlaPost } from "app/ala-post";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: 'ala-profile',
@@ -14,21 +16,30 @@ import { ADUser } from "app/ad-user";
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() userId: number;
+  userId: number;
   user: ADUser;
-  myPosts: AlaRequest[];
+  myPosts: AlaPost[];
 
-  constructor(private service: MainService, private userService: ADUserService) {
+  constructor(private service: MainService,
+             private userService: ADUserService,
+             private router:Router,
+            private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.userService.getUserById(this.userId)
-    .then((user)=>{
+    this.route.params.first().toPromise()
+    .then((params: Params) => {
+      return this.userService.getUserById(params.userId)
+    })
+    .then((user: ADUser)=>{
       this.user = user;
       return this.service.getRequestsByUser(user.username)
     })
-    .then((posts)=>{
-      this.myPosts = posts;
+    .then((requests: AlaRequest[])=>{
+      this.myPosts = requests.map((post: AlaRequest)=>{
+        let alaPost: AlaPost = {user: post.user, created: post.created, requestBody: post.requestBody}
+        return alaPost;
+      });
     });
   }
 

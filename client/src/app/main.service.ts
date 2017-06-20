@@ -14,17 +14,13 @@ export class MainService {
 
   private baseUrl: string = "http://1.1.0.79:3000";
   private requestUrl: string = `${this.baseUrl}/request`;
+  private requestSearchUrl: string = `${this.requestUrl}/_search`;
+  private requestSearchByTagsUrl: string = `${this.requestSearchUrl}/tags`;
   private requestUserUrl: string = `${this.requestUrl}/user`;
 
   constructor(private http: Http) { }
 
   getRequestsByUser(username: string): Promise<AlaRequest[]>{
-     let params = new URLSearchParams();
-     params.set('userId', username);
-      let options = new RequestOptions({
-        params
-      });
-
       return this.http.get(`${this.requestUserUrl}/${username}`)
                   .catch(this.handleError)
                   .map(this.extractSearchData).toPromise();
@@ -70,9 +66,19 @@ export class MainService {
 
   private extractSearchData(res: Response): AlaRequest[]{
     let body: any = res.json();
-    let requests: AlaRequest[] = body;
+    let requests: any = body;
     
-    return requests;
+    requests.forEach((request)=>{
+      request.replies = request.replies.map(reply => {
+        reply.requestBody = {text: reply.text, tags: reply.tags};
+        delete reply.text;
+        delete reply.tags;
+
+        return reply;
+      })
+    });
+
+    return requests as AlaRequest[];
   }
 
   private handleError (error: Response | any) {
