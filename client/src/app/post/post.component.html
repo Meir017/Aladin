@@ -8,7 +8,7 @@
   </span>
   <span class="ala-post-date">{{post.created | date :  "dd/MM/yyyy hh:mm:ss"}}</span>
   <p class="ala-post-text">{{post.requestBody.text}}</p>
-  <div class="ala-reply-panel" *ngIf="!post.replies && !post.completed">
+  <div class="ala-reply-panel" *ngIf="!post.replies && !post.viewOnly">
     <i class="material-icons orange600">check</i>
   </div>
   <md-card-content>

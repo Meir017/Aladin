@@ -5,4 +5,5 @@ export class AlaPost {
     requestBody: AlaRequestDetails;
     created: Date;
     user: AlaUser;
+    viewOnly?: boolean;
 }
