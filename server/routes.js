@@ -69,7 +69,7 @@ async function completeRequest(req, res, next) {
 
     const response = await services.completeRequest(requestId, userId);
 
-    res.status(204);
+    res.json(200, response);
 }
 
 async function rateRequest(req, res, next) {

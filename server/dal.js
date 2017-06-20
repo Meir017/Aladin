@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://aladin:DvFTu0avWDsvZKcY8HkSTwSVpzUGdL22ISrRTqJURmDS4xyOV2q83nC9yv6MzD07qxb6ZCIu7NqHEWmsjPsQMw==@aladin.documents.azure.com:10255/?ssl=true&poolSize=4');
+mongoose.connect('mongodb://52.232.117.146:27017/aladin');
 
 const aladinRequests = new Schema({
     userId: String,
@@ -17,6 +17,7 @@ const aladinRequests = new Schema({
     }],
     replies: [{
         text: String,
+        tags: [String],
         userId: String,
         created: Date
     }],

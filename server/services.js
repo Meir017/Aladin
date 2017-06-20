@@ -6,7 +6,6 @@ module.exports = {
     searchRequestsByTags,
     getRequestsByUserId,
     completeRequest,
-    rateRequest,
     addRequestReply
 };
 
@@ -14,6 +13,16 @@ const { AladinRequest } = require('./dal');
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
+const _ = require('lodash');
+
+let ratings = undefined;
+refreshRatings();
+
+async function refreshRatings() {
+    let temp = await getRatings();
+
+    ratings = temp;
+}
 
 async function getRequest(requestId) {
     if (!ObjectId.isValid(requestId)) {
@@ -28,7 +37,11 @@ async function getRequest(requestId) {
 async function getRequests() {
     const results = await AladinRequest.find({});
 
-    return results.map(extractRequestFromResult);
+    const requests = results.map(extractRequestFromResult);
+
+    var t = _.orderBy(requests, 'user.rating', 'desc');
+
+    return t;
 }
 
 async function createRequest(request) {
@@ -69,10 +82,11 @@ async function completeRequest(requestId, userId) {
     };
     const result = await AladinRequest.findByIdAndUpdate(requestId, update);
 
+    await refreshRatings();
+
     return extractRequestFromResult(result);
 }
 
-async function rateRequest() {}
 async function addRequestReply(requestId, reply) {
     if (!ObjectId.isValid(requestId)) {
         return null;
@@ -91,6 +105,15 @@ async function addRequestReply(requestId, reply) {
     return extractRequestFromResult(result);
 }
 
+async function getRatings() {
+    const rawRatings = await AladinRequest.aggregate({ $match: { completed: true } }, { $group: { _id: "$userId", rating: { $sum: 1 } } });
+    const ratings = {};
+    rawRatings.forEach(result => {
+        ratings[result._id] = result.rating
+    });
+    return ratings;
+}
+
 function extractRequestFromResult(result) {
     if (!result) {
         return null;
@@ -98,7 +121,7 @@ function extractRequestFromResult(result) {
     result._doc.requestId = result._doc._id;
     result._doc.user = {
         id: result._doc.userId,
-        rating: Math.floor(Math.random() * 100)
+        rating: ratings[result._doc.userId] || 0
     }
     delete result._doc._id;
     delete result._doc.__v;
@@ -106,7 +129,7 @@ function extractRequestFromResult(result) {
     result._doc.replies.forEach(reply => {
         reply._doc.user = {
             id: reply.userId,
-            rating: Math.floor(Math.random() * 100)
+            rating: ratings[reply.userId] || 0
         };
         delete reply._doc.userId;
         delete reply._doc._id;

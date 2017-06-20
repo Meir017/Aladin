@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": \"meir\",\r\n    \"requestBody\": {\r\n        \"text\": \"can you help me? 3\",\r\n        \"tags\": [\"tag1\", \"tag2\"]\r\n    },\r\n    \"suggestions\": [{\r\n        \"text\": \"aladeen 7\",\r\n        \"tags\": [\"tag3\", \"tag4\"]\r\n    }]\r\n}"
+					"raw": "{\r\n    \"userId\": \"meir\",\r\n    \"requestBody\": {\r\n        \"text\": \"כמה זה עולה?\",\r\n        \"tags\": [\"שקם\", \"קופי\"]\r\n    },\r\n    \"suggestions\": [{\r\n        \"text\": \"6 שקלים\",\r\n        \"tags\": [\"כסף\"]\r\n    }]\r\n}"
 				},
 				"description": ""
 			},
@@ -218,7 +218,7 @@
 					"variable": [
 						{
 							"key": "requestId",
-							"value": "5947ff9cb1da876fdc83823b"
+							"value": "59483586b26177593013223e"
 						}
 					]
 				},
@@ -232,8 +232,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\": \"api-reply\",\n\t\"userId\": \"yasha\"\n}"
+					"raw": "{\n\t\"text\": \"אני יכול לחזור אליך?\",\n\t\"userId\": \"yasha\"\n}"
 				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get users ratings",
+			"request": {
+				"url": "http://localhost:3000/ratings",
+				"method": "GET",
+				"header": [],
+				"body": {},
 				"description": ""
 			},
 			"response": []

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MainService } from "app/main.service";
 import { AlaRequest } from "app/ala-request";
 import { Observable } from "rxjs/Observable";
@@ -64,5 +65,9 @@ export class FeedComponent implements OnInit {
       };
 
       this.service.addReply(requestId, creteReply);
+  }
+
+  openCreationDialog() {
+    
   }
 }
